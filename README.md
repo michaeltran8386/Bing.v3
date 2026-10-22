@@ -134,7 +134,7 @@ Khắc phục triệt để luật phạt của Microsoft (chỉ nhận điểm 
 ## 📁 Cấu Trúc Thư Mục Dự Án
 
 ```text
-Bing.v2/
+.
 ├── assets/                     # Bộ snapshots, ảnh động GIF và video demo
 │   ├── banner.png              # Ảnh bìa giới thiệu dự án
 │   ├── terminal_snapshot.png   # Ảnh chụp màn hình console runner
@@ -143,23 +143,24 @@ Bing.v2/
 │   ├── cooldown_timer.png      # Ảnh chụp đồng hồ đếm ngược 15 phút
 │   ├── demo_run.gif            # Ảnh GIF động quy trình tự động hóa
 │   └── demo_video.mp4          # Video demo chất lượng cao
-├── run.bat                     # File kích hoạt 1-click từ thư mục gốc
+├── tests/                      # Bộ test tự động (15 tests)
+│   ├── test_config.py
+│   ├── test_popup_handler.py
+│   ├── test_automation.py
+│   └── test_e2e_search.py
+├── tasks/                      # Kế hoạch thực hiện & Todo checklist
+│   ├── plan.md
+│   └── todo.md
+├── run.bat                     # Trình khởi chạy 1-click (tự tạo venv & cài requirements)
+├── bing_auto.py                # Bộ điều phối tìm kiếm, CDP và phân tích điểm
+├── config.py                   # Toàn bộ hằng số cấu hình & hàm tiện ích console
+├── popup_handler.py            # Logic gỡ bỏ dialog, consent & overlay
+├── requirements.txt            # Danh sách thư viện Python (Selenium, Faker,...)
+├── generate_assets.py          # Script tạo snapshot, GIF và video demo
+├── AGENTS.md                   # Tài liệu kiến trúc và hướng dẫn kỹ thuật
 ├── PRD.txt                     # Yêu cầu bài toán gốc
-├── AGENTS.md                   # Tài liệu kiến trúc và hướng dẫn dành cho AI Agents
-├── Bing.v2/                    # Mã nguồn chính của công cụ
-│   ├── run.bat                 # Trình khởi chạy chi tiết (kiểm tra Python & venv)
-│   ├── bing_auto.py            # Bộ điều phối tìm kiếm, CDP và phân tích điểm
-│   ├── config.py               # Toàn bộ hằng số cấu hình & hàm tiện ích console
-│   ├── popup_handler.py        # Logic gỡ bỏ dialog, consent & overlay
-│   ├── requirements.txt        # Danh sách thư viện Python (Selenium, Faker,...)
-│   ├── edge_profile/           # Thư mục lưu phiên đăng nhập Edge (tự sinh)
-│   ├── keywords.txt            # Danh sách từ khóa ngẫu nhiên tạm thời
-│   └── tests/                  # Bộ test tự động (15 tests)
-│       ├── test_config.py
-│       ├── test_popup_handler.py
-│       ├── test_automation.py
-│       └── test_e2e_search.py
-└── tasks/                      # Kế hoạch thực hiện & Todo checklist
+├── LICENSE                     # Giấy phép MIT
+└── README.md                   # Hướng dẫn sử dụng chi tiết
 ```
 
 ---
@@ -174,10 +175,13 @@ Bing.v2/
 ---
 
 ### Bước 1: Khởi động công cụ
-Nhấp đúp chuột vào file **`run.bat`** ở thư mục gốc hoặc trong thư mục `Bing.v2`.
+Nhấp đúp chuột vào file **`run.bat`** tại thư mục dự án.
 
 Script sẽ tự động thực hiện:
 1. Tắt Windows QuickEdit mode để tránh bị kẹt console.
+2. Kiểm tra Python và tự động tạo môi trường ảo `venv` nếu chưa có.
+3. Cài đặt các thư viện phụ thuộc (`requirements.txt`) một cách tối ưu.
+4. Mở giao diện điều khiển chính `bing_auto.py`.
 2. Kiểm tra Python và tự động tạo môi trường ảo `venv` nếu chưa có.
 3. Cài đặt các thư viện phụ thuộc (`requirements.txt`) một cách tối ưu.
 4. Mở giao diện điều khiển chính `bing_auto.py`.
@@ -216,7 +220,7 @@ Tại menu chính, bạn có thể lựa chọn 1 trong 3 chế độ:
 
 ## ⚙️ Tùy Biến Cấu Hình (`config.py`)
 
-Bạn có thể chỉnh sửa các hằng số trong file [`Bing.v2/config.py`](file:///E:/06_Archives/Legacy_Code_Dumps/Bing.v2/Bing.v2/config.py) để phù hợp với tài khoản của mình:
+Bạn có thể chỉnh sửa các hằng số trong file [`config.py`](config.py) để phù hợp với tài khoản của mình:
 
 ```python
 # Số lượt tìm kiếm mục tiêu (Gold Member / Việt Nam)
@@ -248,7 +252,7 @@ Dự án đi kèm bộ 15 kiểm thử tự động toàn diện bao gồm:
 
 Chạy toàn bộ test suite:
 ```powershell
-.\Bing.v2\venv\Scripts\python.exe -m unittest discover -s ".\Bing.v2\tests"
+python -m unittest discover -s ".\tests"
 ```
 
 Kết quả:

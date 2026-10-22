@@ -1,7 +1,7 @@
 # AGENTS.md - Bing Rewards Automation v2 Context Guide
 
 ## Tech Stack
-- **Language & Runtime:** Python 3.12+ (Virtualenv at `Bing.v2/venv/`)
+- **Language & Runtime:** Python 3.12+ (Virtualenv at `venv/`)
 - **Automation Framework:** Selenium WebDriver 4.44+ with `webdriver-manager`
 - **Target Browser:** Microsoft Edge (Chromium-based, Windows x64)
 - **Protocol:** Chrome DevTools Protocol (CDP) for mobile device metrics and touch emulation
@@ -11,43 +11,44 @@
 ---
 
 ## Commands
-- **Launch Tool (User entry point):** Double-click `run.bat` (available at root or `Bing.v2/run.bat`)
-- **Direct Script Execution:** `.\Bing.v2\venv\Scripts\python.exe Bing.v2\bing_auto.py`
+- **Launch Tool (User entry point):** Double-click `run.bat`
+- **Direct Script Execution:** `.\venv\Scripts\python.exe bing_auto.py`
 - **Run All Automated Tests (15 tests):**
   ```powershell
-  .\Bing.v2\venv\Scripts\python.exe -m unittest discover -s ".\Bing.v2\tests"
+  python -m unittest discover -s ".\tests"
   ```
 - **Install / Update Dependencies:**
   ```powershell
-  .\Bing.v2\venv\Scripts\python.exe -m pip install -r Bing.v2\requirements.txt
+  pip install -r requirements.txt
   ```
 
 ---
 
 ## Directory Architecture
 ```
-Bing.v2/ (Workspace Root)
-├── AGENTS.md                  ← This context & rules document
-├── run.bat                    ← Root launcher forwarding to Bing.v2\run.bat
+. (Repository Root)
+├── .gitignore                 ← Git exclusion rules (venv, edge_profile, logs, cache)
+├── LICENSE                    ← MIT License
+├── README.md                  ← Comprehensive documentation with snapshots, GIF, video
+├── AGENTS.md                  ← Technical context guide
 ├── PRD.txt                    ← Core product requirements
-├── tasks/                     ← Implementation plans & checklists
+├── run.bat                    ← Main setup & runner script
+├── bing_auto.py               ← Search orchestrator, CDP switcher, points auditor
+├── config.py                  ← Central settings, constants, and console UI helpers
+├── popup_handler.py           ← Bing cookie & privacy consent dialog cleaner
+├── requirements.txt           ← Python dependencies (selenium, webdriver-manager, faker)
+├── generate_assets.py         ← Asset generation script for snapshots, GIF, and video
+├── assets/                    # Media assets (banner, snapshots, GIF, MP4 video)
+├── tasks/                     # Implementation plans & checklists
 │   ├── plan.md
 │   └── todo.md
-├── Sample/                    ← Legacy/backup reference code
-└── Bing.v2/                   ← Active Production Codebase
-    ├── run.bat                ← Main setup & runner script
-    ├── config.py              ← Central settings, constants, and console UI helpers
-    ├── popup_handler.py       ← Bing cookie & privacy consent dialog cleaner
-    ├── bing_auto.py           ← Search orchestrator, CDP switcher, points auditor
-    ├── requirements.txt       ← Python dependencies (selenium, webdriver-manager, faker)
-    ├── README.md              ← Vietnamese end-user manual
-    ├── edge_profile/          ← Persistent Edge user profile (keeps MSA login session)
-    ├── keywords.txt           ← Temporary file holding generated search terms
-    └── tests/                 ← Unittest test suite
-        ├── test_config.py
-        ├── test_popup_handler.py
-        ├── test_automation.py
-        └── test_e2e_search.py
+├── edge_profile/              ← Persistent Edge user profile (keeps MSA login session, gitignored)
+├── keywords.txt               ← Temporary file holding generated search terms (gitignored)
+└── tests/                     ← Unittest test suite (15 tests)
+    ├── test_config.py
+    ├── test_popup_handler.py
+    ├── test_automation.py
+    └── test_e2e_search.py
 ```
 
 ---
