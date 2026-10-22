@@ -1,0 +1,30 @@
+# Python Virtual Environments
+venv/
+*/venv/
+env/
+*/env/
+.env
+
+# Python Bytecode & Cache
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+
+# Edge Persistent Profile & Sensitive Session Data (DO NOT COMMIT)
+edge_profile/
+*/edge_profile/
+
+# Temporary search keywords & runtime logs
+keywords.txt
+*/keywords.txt
+test_keywords.txt
+*/test_keywords.txt
+*.log
+
+# IDE & OS Artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.superpowers/
