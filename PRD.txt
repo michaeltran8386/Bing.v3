@@ -1,0 +1,5 @@
+1. Với tình trạng hiện nay thì BING nó hiện phần yêu cầu xác nhận quyền sử dụng "Cung cấp data để phục vụ tốt hơn..." Khi đó việc xảy ra lỗi của phần mềm sẽ không được trơn tru, xảy ra lỗi hoặc đơ màn hình không tiếp tục chạy.
+
+2. Khi cài đặt bổ sung thêm phần hướng dẫn người dùng hoặc UI lại thanh tiến trình lúc setup, đôi khi cũng gặp tình trạng kẹt, tức không có tiếp tục được tôi phải nhấn enter để tiếp tục chạy.
+
+3. Phần mobile có thực hiện chạy nhưng Bing không update được, điều tra kĩ lỗi phần này.
